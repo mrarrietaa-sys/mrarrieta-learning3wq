@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Present Perfect — Listening Stories (B1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:        #111111;
+    --ink-soft:   #3A3A3A;
+    --gray:       #6E6E6E;
+    --gray-soft:  #E4E4E4;
+    --white:      #FFFFFF;
+    --r-lg: 26px;
+    --r-md: 16px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  html,body{ height:100%; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--white);
+    color:var(--ink);
+    min-height:100vh;
+    padding:36px 18px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  .bg-blob{ position:fixed; border-radius:50%; filter:blur(60px); z-index:0; opacity:0.6; }
+  .bg-blob.b1{ width:360px; height:360px; background:var(--gray-soft); top:-140px; right:-120px; }
+  .bg-blob.b2{ width:320px; height:320px; background:var(--gray-soft); bottom:-140px; left:-120px; }
+
+  .stage{ max-width:620px; margin:0 auto; position:relative; z-index:1; }
+
+  /* ---------- Persistent header ---------- */
+  .header-row{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:26px;
+  }
+  .m1-badge{
+    width:44px; height:44px; border-radius:12px;
+    background:var(--ink); color:var(--white);
+    border:2.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:15px;
+    box-shadow:0 6px 12px -4px rgba(17,17,17,0.35);
+  }
+  .m1-label{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:16px;
+    color:var(--ink);
+  }
+  .m1-label span{ color:var(--gray); }
+
+  .meta-row{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:18px; gap:10px; flex-wrap:wrap;
+  }
+  .q-count{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:13px;
+    letter-spacing:0.04em; color:var(--ink); text-transform:uppercase;
+  }
+  .dots{ display:flex; gap:5px; flex-wrap:wrap; max-width:260px; }
+  .dot{
+    width:9px; height:9px; border-radius:50%;
+    border:2px solid var(--gray-soft);
+    background:transparent;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  .dot.current{ background:var(--ink); border-color:var(--ink); }
+  .dot.done{ background:var(--ink-soft); border-color:var(--ink-soft); }
+
+  .score-badge{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:13px;
+    color:var(--ink); background:var(--white);
+    border:2.5px solid var(--ink);
+    padding:8px 16px; border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* ---------- Screens ---------- */
+  .screen{ display:none; }
+  .screen.active{ display:block; animation:fadeUp .45s ease both; }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ---------- WELCOME ---------- */
+
+  .welcome{ text-align:center; padding:36px 18px 10px; }
+
+  .eyebrow-pill{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--ink); color:var(--white);
+    font-family:'Inter',sans-serif; font-weight:700; font-size:12px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    padding:9px 18px; border-radius:999px;
+    margin-bottom:26px;
+  }
+
+  h1.title{
+    position:relative; display:inline-block;
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:clamp(30px,7.6vw,52px);
+    text-transform:uppercase;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  h1.title::after{
+    content:""; position:absolute; left:2%; right:2%; bottom:-8px;
+    height:15px; background:var(--gray-soft); border-radius:8px; z-index:-1;
+  }
+
+  p.lead{
+    font-size:17px; font-weight:700; color:var(--ink);
+    margin-bottom:6px;
+  }
+  p.sub-lead{
+    font-size:14px; color:var(--gray); margin-bottom:28px;
+  }
+
+  .hero-photos{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+    margin:0 0 28px;
+  }
+  .photo-box{
+    border:2.5px solid var(--ink); border-radius:14px; overflow:hidden;
+    box-shadow:3px 4px 0 var(--gray-soft); background:var(--gray-soft);
+  }
+  .photo-box img{ display:block; width:100%; height:68px; object-fit:cover; }
+  .photo-box .cap{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:9.5px;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--ink);
+    text-align:center; padding:5px 2px; background:var(--white);
+  }
+
+  .preview-row{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .chip-preview{
+    position:relative;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
+    background:var(--white); color:var(--ink);
+    border:2.5px solid var(--ink);
+    border-radius:14px;
+    padding:12px 18px;
+  }
+  .chip-preview::before{
+    content:""; position:absolute; left:18px; bottom:-9px;
+    border-left:8px solid transparent; border-right:8px solid transparent;
+    border-top:8px solid var(--ink);
+  }
+  .chip-preview::after{
+    content:""; position:absolute; left:20px; bottom:-6px;
+    border-left:6px solid transparent; border-right:6px solid transparent;
+    border-top:6px solid var(--white);
+  }
+
+  .info-box{
+    text-align:left; background:var(--gray-soft); border:2.5px dashed var(--gray);
+    border-radius:var(--r-md); padding:18px 20px; margin:0 0 34px;
+    font-size:13.5px; color:var(--ink); line-height:1.55;
+  }
+  .info-box strong{ color:var(--ink); }
+
+  .btn{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:15px;
+    border-radius:999px;
+    padding:17px 32px;
+    cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border:none;
+  }
+  .btn:focus-visible{ outline:3px solid var(--gray); outline-offset:3px; }
+
+  .btn-primary{
+    background:var(--ink); color:var(--white);
+    border:3px solid var(--ink);
+    box-shadow:4px 5px 0 var(--gray);
+    width:100%; max-width:340px;
+  }
+  .btn-primary:hover{ transform:translate(-2px,-2px); box-shadow:6px 7px 0 var(--gray); }
+  .btn-primary:active{ transform:translate(1px,2px); box-shadow:2px 2px 0 var(--gray); }
+  .btn-primary:disabled{
+    background:var(--gray-soft); border-color:var(--gray-soft); color:var(--gray);
+    box-shadow:none; cursor:not-allowed; transform:none;
+  }
+
+  /* ---------- CARD ---------- */
+
+  .card{
+    background:var(--white);
+    border:3px solid var(--ink);
+    border-radius:var(--r-lg);
+    box-shadow:9px 10px 0 var(--gray-soft);
+    padding:30px 28px;
+    margin-bottom:20px;
+  }
+
+  .card-label{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:14px;
+    letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:8px;
+  }
+  .card-sub{ font-size:14px; color:var(--gray); margin-bottom:22px; }
+
+  .photo-frame{
+    position:relative; width:100%; aspect-ratio:16/10; max-height:250px;
+    background:var(--gray-soft);
+    border:3px solid var(--ink);
+    border-radius:var(--r-md);
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:6px 7px 0 var(--gray-soft);
+    margin-bottom:24px;
+  }
+  .photo-frame img{
+    width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity .35s ease;
+  }
+  .img-loading{
+    position:absolute; font-family:'Inter',sans-serif; font-size:12.5px;
+    font-weight:700; color:var(--gray); letter-spacing:0.03em;
+  }
+
+  .listen-row{ display:flex; justify-content:center; margin-bottom:10px; }
+  .btn-listen{
+    background:var(--ink); color:var(--white);
+    border:none; border-radius:999px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:13.5px;
+    padding:12px 22px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    box-shadow:3px 4px 0 var(--gray-soft);
+    transition:transform .15s ease;
+  }
+  .btn-listen:hover{ transform:translate(-2px,-2px); }
+  .btn-listen:active{ transform:translate(1px,2px); }
+  .btn-listen svg{ width:16px; height:16px; }
+  .btn-listen.speaking{ animation:speakPulse .7s ease-in-out infinite; }
+  .btn-listen:disabled{ opacity:.6; cursor:not-allowed; }
+  @keyframes speakPulse{ 0%,100%{ opacity:1;} 50%{ opacity:.6;} }
+
+  .listen-hint{
+    text-align:center; font-size:12.5px; color:var(--gray);
+    margin-bottom:22px;
+  }
+
+  /* ---------- Recap bar (shown on question cards) ---------- */
+  .recap-row{
+    display:flex; align-items:center; gap:12px;
+    background:var(--gray-soft); border:2px solid var(--ink);
+    border-radius:14px; padding:10px 14px; margin-bottom:22px;
+  }
+  .recap-thumb{
+    width:46px; height:46px; border-radius:10px; overflow:hidden;
+    border:2px solid var(--ink); flex:0 0 auto; background:var(--white);
+  }
+  .recap-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .recap-text{ flex:1; min-width:0; }
+  .recap-title{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:12px;
+    text-transform:uppercase; letter-spacing:0.03em; color:var(--ink);
+  }
+  .recap-sub{ font-size:11.5px; color:var(--gray); }
+  .btn-recap-listen{
+    flex:0 0 auto;
+    background:var(--white); color:var(--ink);
+    border:2px solid var(--ink); border-radius:999px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:12px;
+    padding:9px 14px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .btn-recap-listen:disabled{ opacity:.6; cursor:not-allowed; }
+  .btn-recap-listen svg{ width:13px; height:13px; }
+
+  .question-text{
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:19px;
+    color:var(--ink); line-height:1.5; margin-bottom:20px;
+  }
+
+  .option-btn{
+    display:flex; align-items:center; gap:10px;
+    width:100%; text-align:left;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:14.5px;
+    background:var(--white); color:var(--ink);
+    border:2.5px solid var(--ink); border-radius:14px;
+    padding:14px 16px; margin-bottom:10px; cursor:pointer;
+    transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .option-btn:hover:not(:disabled){ transform:translate(-2px,-2px); }
+  .option-btn:active:not(:disabled){ transform:translate(1px,1px); }
+  .option-btn .opt-letter{
+    flex:0 0 auto; width:24px; height:24px; border-radius:50%;
+    border:2px solid currentColor; display:flex; align-items:center; justify-content:center;
+    font-size:11.5px; font-weight:800;
+  }
+  .option-btn:disabled{ cursor:default; }
+  .option-btn.correct-pick{ background:var(--ink); color:var(--white); }
+  .option-btn.wrong-pick{ background:var(--white); color:var(--gray); text-decoration:line-through; border-color:var(--gray); }
+  .option-btn.reveal-correct{ background:var(--gray-soft); border-color:var(--ink); color:var(--ink); }
+
+  .feedback-toast{
+    display:none; align-items:center; gap:10px;
+    font-family:'Inter',sans-serif; font-weight:800; font-size:14px;
+    padding:13px 18px; border-radius:var(--r-md);
+    margin:18px 0 0;
+    border:2.5px solid var(--ink);
+  }
+  .feedback-toast.show{ display:flex; animation:popIn .3s cubic-bezier(.34,1.56,.64,1); }
+  @keyframes popIn{ from{ opacity:0; transform:scale(.92) translateY(-4px);} to{ opacity:1; transform:scale(1) translateY(0);} }
+  .feedback-toast.correct{ background:var(--ink); color:var(--white); box-shadow:3px 4px 0 var(--gray-soft); }
+  .feedback-toast.incorrect{ background:var(--white); color:var(--ink); box-shadow:3px 4px 0 var(--gray-soft); border-color:var(--ink); }
+  .feedback-toast svg{ width:18px; height:18px; flex-shrink:0; }
+
+  .shake{ animation:shake .4s ease; }
+  @keyframes shake{
+    10%,90%{ transform:translateX(-2px); }
+    20%,80%{ transform:translateX(4px); }
+    30%,50%,70%{ transform:translateX(-7px); }
+    40%,60%{ transform:translateX(7px); }
+  }
+
+  .action-row{ display:flex; gap:14px; margin-top:22px; }
+  .action-row .btn{ flex:1; }
+
+  /* ---------- FINAL ---------- */
+
+  .final-card{ text-align:center; padding:48px 32px 40px; }
+
+  .trophy-wrap{
+    width:88px; height:88px; margin:0 auto 22px;
+    background:var(--ink); border-radius:22px;
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:4px 5px 0 var(--gray-soft);
+    transform:rotate(-4deg);
+    animation:trophyPop .6s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes trophyPop{ 0%{ transform:scale(0) rotate(-24deg);} 100%{ transform:scale(1) rotate(-4deg);} }
+  .trophy-wrap svg{ width:42px; height:42px; }
+
+  h2.final-title{
+    font-family:'Poppins',sans-serif; font-weight:900; text-transform:uppercase;
+    font-size:28px; margin-bottom:8px;
+  }
+  p.final-sub{ color:var(--gray); font-size:14.5px; margin-bottom:28px; }
+
+  .score-display{
+    display:inline-flex; align-items:baseline; gap:6px;
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:50px; color:var(--ink);
+    margin-bottom:4px;
+  }
+  .score-display span.of{ font-size:22px; color:var(--gray); font-weight:700; }
+  .score-label{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gray); margin-bottom:28px;
+  }
+
+  .progress-track{
+    height:12px; background:var(--gray-soft); border:2px solid var(--ink);
+    border-radius:99px; overflow:hidden; margin-bottom:32px;
+  }
+  .progress-fill{ height:100%; width:0%; background:var(--ink); transition:width 1s cubic-bezier(.22,1,.36,1); }
+
+  .final-btn-row{ display:flex; flex-direction:column; gap:12px; align-items:center; }
+  .final-btn-row .btn{ width:100%; max-width:340px; }
+
+  @media (max-width:480px){
+    .card{ padding:22px 18px; }
+    .final-card{ padding:40px 20px 34px; }
+    .welcome{ padding:26px 10px 6px; }
+    .action-row{ flex-direction:column; }
+    .question-text{ font-size:17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-blob b1" aria-hidden="true"></div>
+<div class="bg-blob b2" aria-hidden="true"></div>
+
+<audio id="tts-audio" preload="none" style="display:none;"></audio>
+
+<div class="stage">
+
+  <div class="header-row">
+    <div class="m1-badge">B1</div>
+    <div class="m1-label">INTERMEDIATE <span>B1</span></div>
+  </div>
+
+  <!-- ============ WELCOME SCREEN ============ -->
+  <section class="screen active" id="screen-welcome">
+    <div class="welcome">
+      <div class="eyebrow-pill">✦ Interactive Activity</div>
+      <h1 class="title">Present Perfect<br>Listening Stories</h1>
+      <p class="lead">Listen to two short stories about Betty and Mark.</p>
+      <p class="sub-lead">Then answer the questions about what has happened, using the Present Perfect.</p>
+
+      <div class="hero-photos" aria-hidden="true">
+        <div class="photo-box"><img src="https://images.pexels.com/photos/8921143/pexels-photo-8921143.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div class="cap">Picnic</div></div>
+        <div class="photo-box"><img src="https://images.pexels.com/photos/8313336/pexels-photo-8313336.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div class="cap">Basket</div></div>
+        <div class="photo-box"><img src="https://images.pexels.com/photos/13447733/pexels-photo-13447733.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div class="cap">Reading</div></div>
+        <div class="photo-box"><img src="https://images.pexels.com/photos/3747502/pexels-photo-3747502.jpeg?auto=compress&cs=tinysrgb&w=300" alt=""><div class="cap">Books</div></div>
+      </div>
+
+      <div class="preview-row" aria-hidden="true">
+        <div class="chip-preview">I'VE NEVER BEEN...</div>
+        <div class="chip-preview">SHE'S FORGOTTEN...</div>
+        <div class="chip-preview">HE'S ALREADY READ...</div>
+      </div>
+
+      <div class="info-box">
+        <strong>Instructions:</strong> this activity has two short parts. In each part, press <strong>“Listen to the story”</strong> to hear Betty and Mark talking — you can listen as many times as you like. Then answer four multiple-choice questions about what you heard, using the Present Perfect (has/have + past participle). Choose the option you think is correct and press it; you will see right away if you were right.
+      </div>
+
+      <button class="btn btn-primary" id="btn-start">
+        START ACTIVITY
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ ACTIVITY SCREEN ============ -->
+  <section class="screen" id="screen-activity">
+    <div class="meta-row">
+      <div class="q-count" id="q-count">PART 1 OF 2</div>
+      <div class="dots" id="dots"></div>
+      <div class="score-badge">SCORE: <span id="score-value">0</span>/8</div>
+    </div>
+
+    <!-- STORY step -->
+    <div class="card" id="story-card">
+      <div class="card-label" id="story-label">Listen to the story</div>
+      <div class="card-sub" id="story-sub">Press play to hear what happens. You can listen more than once.</div>
+
+      <div class="photo-frame" id="story-photo-frame">
+        <div class="img-loading">Loading photo…</div>
+        <img id="story-photo-img" alt="A real photograph related to the story." />
+      </div>
+
+      <div class="listen-row">
+        <button class="btn-listen" id="btn-listen-story" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+          <span id="listen-story-label">LISTEN TO THE STORY</span>
+        </button>
+      </div>
+      <div class="listen-hint">🎧 Mark's voice is male, Betty's voice is female.</div>
+
+      <div class="action-row">
+        <button class="btn btn-primary" id="btn-story-continue">CONTINUE TO QUESTIONS
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- QUESTION step -->
+    <div class="card" id="question-card" style="display:none;">
+      <div class="card-label">Choose the correct answer</div>
+      <div class="card-sub">Based on the story you just heard.</div>
+
+      <div class="recap-row">
+        <div class="recap-thumb"><img id="recap-img" alt=""></div>
+        <div class="recap-text">
+          <div class="recap-title" id="recap-title"></div>
+          <div class="recap-sub">Not sure? You can listen again.</div>
+        </div>
+        <button class="btn-recap-listen" id="btn-listen-recap" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+          <span id="listen-recap-label">LISTEN</span>
+        </button>
+      </div>
+
+      <div class="question-text" id="question-text"></div>
+
+      <div id="options-wrap"></div>
+
+      <div class="feedback-toast" id="feedback-toast"></div>
+
+      <div class="action-row">
+        <button class="btn btn-primary" id="btn-next" style="display:none;">NEXT
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL SCREEN ============ -->
+  <section class="screen" id="screen-final">
+    <div class="card final-card">
+      <div class="trophy-wrap">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 01-10 0V4z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 5H4a1 1 0 00-1 1v1a4 4 0 004 4M17 5h3a1 1 0 011 1v1a4 4 0 01-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="final-title">Well done!</h2>
+      <p class="final-sub">You completed the Present Perfect Listening Stories activity.</p>
+
+      <div class="score-display"><span id="final-score">0</span><span class="of">/ 8</span></div>
+      <div class="score-label">Your score</div>
+
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+      <div class="final-btn-row">
+        <button class="btn btn-primary" id="btn-retry">TRY AGAIN</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+
+  const IMG = {
+    picnic:    "https://images.pexels.com/photos/8921143/pexels-photo-8921143.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200",
+    basket:    "https://images.pexels.com/photos/8313336/pexels-photo-8313336.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200",
+    magazine:  "https://images.pexels.com/photos/13447733/pexels-photo-13447733.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200",
+    books:     "https://images.pexels.com/photos/3747502/pexels-photo-3747502.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200"
+  };
+
+  // Two short stories about Betty and Mark, written for this Present Perfect
+  // listening activity. Each line carries the gender used for its spoken
+  // audio (Mark = male voice, Betty = female voice).
+  const STORIES = [
+    {
+      id: 'picnic',
+      title: "Betty & Mark's Picnic",
+      img: IMG.picnic,
+      lines: [
+        { text:"I'm so excited! I've never been to the river bank for a picnic before.", voice:'M' },
+        { text:"I know! I've packed the basket and I've parked the car outside, so we're ready to go.", voice:'F' },
+        { text:"Perfect! Let's grab the food and leave right now.", voice:'M' },
+        { text:"The food...? Oh no, I can't believe it. I've forgotten to take the food!", voice:'F' },
+        { text:"Betty, don't worry, we can stop at a shop on the way.", voice:'M' },
+        { text:"I know, but I'm still so angry with myself. I always forget something!", voice:'F' }
+      ]
+    },
+    {
+      id: 'reading',
+      title: "A Quiet Afternoon at Home",
+      img: IMG.magazine,
+      lines: [
+        { text:"It's a quiet Sunday afternoon, and Betty is sitting in her favorite chair, reading a magazine article.", voice:'F' },
+        { text:"That looks interesting. What's the article about?", voice:'M' },
+        { text:"It's about famous explorers. You should read it when I've finished, it's really good.", voice:'F' },
+        { text:"Actually, I'd love to read the magazine too! Can I have it after you?", voice:'M' },
+        { text:"Of course. Why don't you read one of the books on the table while you wait?", voice:'F' },
+        { text:"I can't. I've already read all the books on the table. I've read every single one!", voice:'M' },
+        { text:"Oh, that's true. Well, there's a new mystery novel on the shelf. I haven't started it yet, but I really want to.", voice:'F' },
+        { text:"Oh, I read that one last week! I won't tell you anything... except that the detective finally catches the thief at the end, in the old train station!", voice:'M' },
+        { text:"Mark! Why would you tell me the ending?! Now I don't even want to read it anymore. I'm so angry with you!", voice:'F' }
+      ]
+    }
+  ];
+
+  // The 8 comprehension questions (verified against the real liveworksheets
+  // "Present Perfect - Videos" exercise this activity is based on: the exact
+  // question text and the exact three/two answer choices for each one).
+  const QUESTIONS = [
+    { storyId:'picnic',  q:"Has Mark ever been to the river bank for a picnic?", options:["Yes, he has","No, he hasn't"], correct:1 },
+    { storyId:'picnic',  q:"How does he feel about it?", options:["He's thrilled","He's afraid","He's excited"], correct:2 },
+    { storyId:'picnic',  q:"What has Betty done?", options:["She has parked the car outside","She has closed all the doors","She has fed the fish"], correct:0 },
+    { storyId:'picnic',  q:"Why does Betty get angry at the end?", options:["Because Mark hasn't done anything","Because she's not going to the picnic","Because she has forgotten to take the food"], correct:2 },
+    { storyId:'reading', q:"What is Betty doing?", options:["She's doing the housework","She's reading a magazine article","She's reading the newspaper"], correct:1 },
+    { storyId:'reading', q:"What does Mark want to do?", options:["He wants to go to the park with Betty","He wants to read the newspaper too","He wants to read the magazine too"], correct:2 },
+    { storyId:'reading', q:"Why doesn't Mark want to read any of the books on the table?", options:["Because he has already read all the books on the table","Because he doesn't like the books on the table","Because he doesn't like reading"], correct:0 },
+    { storyId:'reading', q:"Why does Betty get angry at the end?", options:["Because Mark doesn't stop talking","Because Mark tells Betty the ending of the book she wants to read","Because the police don't catch the bad guy in the book"], correct:1 }
+  ];
+
+  // Flatten into a sequence of steps: a 'story' step before each group of
+  // four 'question' steps.
+  const STEPS = [];
+  STORIES.forEach((story, sIdx)=>{
+    STEPS.push({ type:'story', story });
+    QUESTIONS.forEach((q)=>{
+      if(q.storyId === story.id) STEPS.push({ type:'question', q, storyIdx:sIdx });
+    });
+  });
+
+  let stepIndex = 0;
+  let score = 0;
+  let locked = false;
+
+  const screens = {
+    welcome: document.getElementById('screen-welcome'),
+    activity: document.getElementById('screen-activity'),
+    final: document.getElementById('screen-final')
+  };
+
+  const qCount = document.getElementById('q-count');
+  const scoreValue = document.getElementById('score-value');
+  const dotsEl = document.getElementById('dots');
+
+  const storyCard = document.getElementById('story-card');
+  const storyLabel = document.getElementById('story-label');
+  const storySub = document.getElementById('story-sub');
+  const storyPhotoFrame = document.getElementById('story-photo-frame');
+  const storyPhotoImg = document.getElementById('story-photo-img');
+  const btnListenStory = document.getElementById('btn-listen-story');
+  const listenStoryLabel = document.getElementById('listen-story-label');
+  const btnStoryContinue = document.getElementById('btn-story-continue');
+
+  const questionCard = document.getElementById('question-card');
+  const recapImg = document.getElementById('recap-img');
+  const recapTitle = document.getElementById('recap-title');
+  const btnListenRecap = document.getElementById('btn-listen-recap');
+  const listenRecapLabel = document.getElementById('listen-recap-label');
+  const questionText = document.getElementById('question-text');
+  const optionsWrap = document.getElementById('options-wrap');
+  const feedbackToast = document.getElementById('feedback-toast');
+  const btnNext = document.getElementById('btn-next');
+
+  const btnStart = document.getElementById('btn-start');
+  const btnRetry = document.getElementById('btn-retry');
+
+  /* ---------------- Natural human-voice pronunciation (male + female) ----------------
+     Three tiers, tried in order every single time (never a permanent sticky
+     disable after one hiccup, so a single dropped connection never locks the
+     whole activity into robotic audio):
+     1) A free built-in cloud-quality OS voice (Microsoft Edge "Online (Natural)",
+        Google US English, Samantha) when the browser already has one installed.
+     2) A recorded-quality neural voice (Amazon Polly, via a free public relay).
+     3) The browser's best built-in voice of the matching gender, only used if
+        neither of the above is available or reachable.
+     The voice gender always matches the speaker of each line (Mark = male,
+     Betty = female). */
+  const ttsAudio = document.getElementById('tts-audio');
+  const NEURAL_VOICES = {
+    M: ["Matthew", "Joey"],
+    F: ["Joanna", "Kendra", "Salli"]
+  };
+  let consecutiveFailures = 0;
+
+  function pickNeuralVoice(gender, index){
+    const list = NEURAL_VOICES[gender] || NEURAL_VOICES.F;
+    return list[index % list.length];
+  }
+
+  let cachedVoices = [];
+  function refreshVoices(){
+    if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices(); }
+  }
+  if('speechSynthesis' in window){
+    refreshVoices();
+    window.speechSynthesis.onvoiceschanged = refreshVoices;
+  }
+
+  function pickFallbackVoice(gender){
+    if(!cachedVoices.length) return null;
+    const femaleNames = [/Samantha/i, /Zira/i, /Female/i, /Joanna/i, /Aria/i, /Jenny/i, /Victoria/i];
+    const maleNames   = [/Daniel/i, /David/i, /Alex/i, /Male/i, /Guy/i, /Fred/i, /Matthew/i];
+    const priorityNames = gender === 'M' ? maleNames : femaleNames;
+    for(const rx of priorityNames){
+      const v = cachedVoices.find(v => rx.test(v.name) && v.lang.startsWith('en'));
+      if(v) return v;
+    }
+    const enUS = cachedVoices.find(v => v.lang === 'en-US');
+    if(enUS) return enUS;
+    const anyEn = cachedVoices.find(v => v.lang && v.lang.startsWith('en'));
+    return anyEn || cachedVoices[0];
+  }
+
+  function pickPremiumVoice(gender){
+    if(!cachedVoices.length) return null;
+    const femaleNames = [
+      /Microsoft (Aria|Jenny|Michelle|Ana) Online \(Natural\)/i,
+      /Google US English/i,
+      /Samantha/i
+    ];
+    const maleNames = [
+      /Microsoft (Guy|Davis|Andrew|Christopher|Eric|Brian) Online \(Natural\)/i,
+      /Google UK English Male/i,
+      /Alex/i
+    ];
+    const priorityNames = gender === 'M' ? maleNames : femaleNames;
+    for(const rx of priorityNames){
+      const v = cachedVoices.find(v => rx.test(v.name) && v.lang && v.lang.startsWith('en'));
+      if(v) return v;
+    }
+    return null;
+  }
+
+  function speakWithVoice(text, voice, onEnd){
+    if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.voice = voice;
+    utter.rate = 0.94; utter.pitch = 1.0; utter.volume = 1;
+    utter.onend = function(){ if(onEnd) onEnd(); };
+    utter.onerror = function(){ if(onEnd) onEnd(); };
+    window.speechSynthesis.speak(utter);
+  }
+
+  function fallbackSpeak(text, gender, onEnd){
+    if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    const v = pickFallbackVoice(gender);
+    if(v) utter.voice = v;
+    utter.rate = 0.9; utter.pitch = gender === 'M' ? 0.95 : 1.05; utter.volume = 1;
+    utter.onend = function(){ if(onEnd) onEnd(); };
+    utter.onerror = function(){ if(onEnd) onEnd(); };
+    window.speechSynthesis.speak(utter);
+  }
+
+  function attemptNeural(text, gender, voiceIndex, attempt, onSuccess, onFail){
+    const voiceName = pickNeuralVoice(gender, voiceIndex + attempt);
+    const url = 'https://api.streamelements.com/kappa/v2/speech?voice=' + voiceName + '&text=' + encodeURIComponent(text);
+    let settled = false;
+    const timeoutMs = consecutiveFailures >= 2 ? 4000 : 7000;
+    const safety = setTimeout(function(){
+      if(!settled){ settled = true; try{ ttsAudio.pause(); }catch(e){} onFail(); }
+    }, timeoutMs);
+
+    ttsAudio.onended = function(){
+      if(settled) return; settled = true; clearTimeout(safety);
+      consecutiveFailures = 0; onSuccess();
+    };
+    ttsAudio.onerror = function(){
+      if(settled) return; settled = true; clearTimeout(safety); onFail();
+    };
+
+    try{
+      ttsAudio.src = url;
+      const p = ttsAudio.play();
+      if(p && p.catch){
+        p.catch(function(){ if(settled) return; settled = true; clearTimeout(safety); onFail(); });
+      }
+    }catch(e){
+      if(!settled){ settled = true; clearTimeout(safety); onFail(); }
+    }
+  }
+
+  function speakPhrase(text, gender, onEnd){
+    let finished = false;
+    const finish = function(){ if(!finished){ finished = true; if(onEnd) onEnd(); } };
+
+    const premium = pickPremiumVoice(gender);
+    if(premium){ speakWithVoice(text, premium, finish); return; }
+
+    attemptNeural(text, gender, 0, 0, finish, function(){
+      attemptNeural(text, gender, 0, 1, finish, function(){
+        consecutiveFailures++;
+        fallbackSpeak(text, gender, finish);
+      });
+    });
+  }
+
+  // Plays a story's lines one after another, in order.
+  let playToken = 0;
+  function playStory(story, onDone){
+    const myToken = ++playToken;
+    let i = 0;
+    function next(){
+      if(myToken !== playToken) return; // a newer playback request cancelled this one
+      if(i >= story.lines.length){ if(onDone) onDone(); return; }
+      const line = story.lines[i++];
+      speakPhrase(line.text, line.voice, next);
+    }
+    next();
+  }
+
+  /* ---------------- Photo loading ---------------- */
+  function loadPhoto(imgEl, frameEl, src){
+    const loading = frameEl.querySelector('.img-loading');
+    if(loading){ loading.style.display = 'block'; loading.textContent = 'Loading photo…'; }
+    imgEl.style.opacity = '0';
+    imgEl.onload = function(){ if(loading) loading.style.display = 'none'; imgEl.style.opacity = '1'; };
+    imgEl.onerror = function(){ if(loading) loading.textContent = 'Photo could not be loaded.'; };
+    imgEl.src = src;
+  }
+
+  /* ---------------- Step rendering ---------------- */
+  function buildDots(){
+    dotsEl.innerHTML = '';
+    QUESTIONS.forEach(()=>{
+      const d = document.createElement('div');
+      d.className = 'dot';
+      dotsEl.appendChild(d);
+    });
+  }
+
+  function questionGlobalIndex(step){
+    // index of this question among all 8 QUESTIONS (by identity)
+    return QUESTIONS.indexOf(step.q);
+  }
+
+  function refreshDots(currentQuestionGlobalIdx){
+    [...dotsEl.children].forEach((d,i)=>{
+      d.classList.remove('done','current');
+      if(currentQuestionGlobalIdx === null){
+        if(i < answeredCountBefore()) d.classList.add('done');
+        return;
+      }
+      if(i < currentQuestionGlobalIdx) d.classList.add('done');
+      else if(i === currentQuestionGlobalIdx) d.classList.add('current');
+    });
+  }
+
+  function answeredCountBefore(){
+    // how many question steps have been passed so far
+    let n = 0;
+    for(let i=0;i<stepIndex;i++){ if(STEPS[i].type==='question') n++; }
+    return n;
+  }
+
+  function renderStep(){
+    locked = false;
+    const step = STEPS[stepIndex];
+
+    if(step.type === 'story'){
+      storyCard.style.display = 'block';
+      questionCard.style.display = 'none';
+
+      const partNum = step.storyIdx !== undefined ? step.storyIdx + 1 : (STORIES.indexOf(step.story) + 1);
+      qCount.textContent = `PART ${partNum} OF ${STORIES.length}`;
+      refreshDots(answeredCountBefore());
+
+      storyLabel.textContent = step.story.title;
+      storySub.textContent = 'Press play to hear what happens. You can listen more than once.';
+      loadPhoto(storyPhotoImg, storyPhotoFrame, step.story.img);
+
+      listenStoryLabel.textContent = 'LISTEN TO THE STORY';
+      btnListenStory.disabled = false;
+      btnListenStory.classList.remove('speaking');
+
+    } else {
+      storyCard.style.display = 'none';
+      questionCard.style.display = 'block';
+
+      const gIdx = questionGlobalIndex(step);
+      qCount.textContent = `QUESTION ${gIdx+1} OF ${QUESTIONS.length}`;
+      refreshDots(gIdx);
+
+      const story = STORIES[step.storyIdx];
+      recapImg.src = story.img;
+      recapTitle.textContent = story.title;
+      listenRecapLabel.textContent = 'LISTEN';
+      btnListenRecap.disabled = false;
+
+      questionText.textContent = step.q.q;
+
+      optionsWrap.innerHTML = '';
+      const letters = ['A','B','C','D'];
+      step.q.options.forEach((opt, i)=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'option-btn';
+        b.innerHTML = '<span class="opt-letter">' + letters[i] + '</span><span>' + opt + '</span>';
+        b.addEventListener('click', function(){ onOptionClick(step, i, b); });
+        optionsWrap.appendChild(b);
+      });
+
+      feedbackToast.className = 'feedback-toast';
+      feedbackToast.innerHTML = '';
+      btnNext.style.display = 'none';
+    }
+  }
+
+  function onOptionClick(step, chosenIdx, btnEl){
+    if(locked) return;
+    locked = true;
+
+    const isCorrect = chosenIdx === step.q.correct;
+    [...optionsWrap.children].forEach((b, i)=>{
+      b.disabled = true;
+      if(i === chosenIdx && isCorrect) b.classList.add('correct-pick');
+      else if(i === chosenIdx && !isCorrect) b.classList.add('wrong-pick');
+      else if(i === step.q.correct) b.classList.add('reveal-correct');
+    });
+
+    if(isCorrect){
+      score++;
+      scoreValue.textContent = score;
+    } else {
+      questionCard.classList.add('shake');
+      setTimeout(()=>questionCard.classList.remove('shake'), 400);
+    }
+
+    feedbackToast.className = 'feedback-toast show ' + (isCorrect ? 'correct' : 'incorrect');
+    feedbackToast.innerHTML = isCorrect
+      ? '<svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Correct! Well done.'
+      : '<svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 16.5h.01M12 3l9 16H3L12 3z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Not quite — the correct answer is highlighted above.';
+
+    btnNext.style.display = 'inline-flex';
+    btnNext.textContent = (stepIndex === STEPS.length - 1) ? '' : '';
+    btnNext.innerHTML = (stepIndex === STEPS.length - 1)
+      ? 'SEE RESULTS <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      : 'NEXT <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  btnListenStory.addEventListener('click', function(){
+    if(btnListenStory.disabled) return;
+    const step = STEPS[stepIndex];
+    if(step.type !== 'story') return;
+    btnListenStory.classList.add('speaking');
+    btnListenStory.disabled = true;
+    listenStoryLabel.textContent = 'PLAYING…';
+    playStory(step.story, function(){
+      btnListenStory.classList.remove('speaking');
+      btnListenStory.disabled = false;
+      listenStoryLabel.textContent = 'LISTEN AGAIN';
+    });
+  });
+
+  btnListenRecap.addEventListener('click', function(){
+    if(btnListenRecap.disabled) return;
+    const step = STEPS[stepIndex];
+    if(step.type !== 'question') return;
+    const story = STORIES[step.storyIdx];
+    btnListenRecap.disabled = true;
+    listenRecapLabel.textContent = '...';
+    playStory(story, function(){
+      btnListenRecap.disabled = false;
+      listenRecapLabel.textContent = 'LISTEN';
+    });
+  });
+
+  btnStoryContinue.addEventListener('click', function(){
+    playToken++; // stop any ongoing story playback
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    stepIndex++;
+    renderStep();
+  });
+
+  btnNext.addEventListener('click', function(){
+    playToken++;
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    stepIndex++;
+    if(stepIndex < STEPS.length){
+      renderStep();
+    } else {
+      showFinal();
+    }
+  });
+
+  btnStart.addEventListener('click', ()=>{
+    screens.welcome.classList.remove('active');
+    screens.activity.classList.add('active');
+    buildDots();
+    stepIndex = 0;
+    renderStep();
+  });
+
+  function showFinal(){
+    screens.activity.classList.remove('active');
+    screens.final.classList.add('active');
+    document.getElementById('final-score').textContent = score;
+    const pct = Math.round((score / QUESTIONS.length) * 100);
+    setTimeout(()=>{
+      document.getElementById('progress-fill').style.width = pct + '%';
+    }, 150);
+  }
+
+  btnRetry.addEventListener('click', ()=>{
+    stepIndex = 0;
+    score = 0;
+    scoreValue.textContent = 0;
+    screens.final.classList.remove('active');
+    screens.activity.classList.add('active');
+    buildDots();
+    renderStep();
+  });
+
+})();
+</script>
+
+</body>
+</html>
